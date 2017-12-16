@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="IObservable.cs" />
     <Compile Include="IObserver.cs" />
+    <Compile Include="Scene.cs" />
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

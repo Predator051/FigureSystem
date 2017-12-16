@@ -85,5 +85,41 @@ namespace UTFigureSystem
             Assert.AreEqual(Math.Round(sArea, 2), Math.Round(shape.Area(), 2));
         }
 
+        [TestMethod]
+        public void TestScene()
+        {
+            Scene scene = Scene.getInstance();
+
+            Circle circle = new Circle(5, new Vector(0, 0));
+            RegularPolygon rp = new RegularPolygon(0, 5, new Vector(0, 0), 5);
+            Rectangle rec = new Rectangle(10, 10, new Vector(0, 0), 0);
+            RightTriangle rt = new RightTriangle(10, 10, new Vector(0, 0), 0);
+            Square sq = new Square(10, new Vector(0, 0), 0);
+
+            scene.AddObserver(circle);
+            scene.AddObserver(rp);
+            scene.AddObserver(rec);
+            scene.AddObserver(rt);
+            scene.AddObserver(sq);
+
+            scene.scale(new Vector(0, 0), 0.5);
+
+            Assert.AreEqual(circle.Perimeter(), 2.5 * 2 * Math.PI);
+            Assert.AreEqual(circle.Area(), 2.5 * 2.5 * Math.PI);
+
+            Assert.AreEqual(20, rec.Perimeter());
+            Assert.AreEqual(25, rec.Area());
+
+            Assert.AreEqual(10 + Math.Sqrt(50), rt.Perimeter());
+            Assert.AreEqual(25 / 2.0, rt.Area());
+
+            Assert.AreEqual(20, sq.Perimeter());
+            Assert.AreEqual(25, sq.Area());
+
+            double side = 2.5 / (Math.Sqrt(25 + 10 * Math.Sqrt(5)) / 10.0);
+            double sArea = (Math.Sqrt(25 + 10 * Math.Sqrt(5)) / 4.0) * side * side;
+            Assert.AreEqual(Math.Round(side * 5, 2), Math.Round(rp.Perimeter(), 2));
+            Assert.AreEqual(Math.Round(sArea, 2), Math.Round(rp.Area(), 2));
+        }
     }
 }
